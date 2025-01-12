@@ -8,6 +8,7 @@ const Pickwinner = () => {
   const [players, setPlayers] = useState([]);
   const [balance, setBalance] = useState("0");
   const contractAddress = "0xF8b9FEf452Aa9ae6Ee07c77Ddf47f6AFC31db037";
+  const playerr=['John', 'Kaif', 'Alice'];
 
   useEffect(() => {
     const loadBlockchainData = async () => {
@@ -88,13 +89,13 @@ const Pickwinner = () => {
         </div>
 
         <div className="mb-6">
-          <div className="relative overflow-hidden rounded-none">
+          {/* <div className="relative overflow-hidden rounded-none">
             <img
               src="/Lottery.png"
               alt="Lottery"
               className="w-full h-[200px] object-cover"
             />
-          </div>
+          </div> */}
           <div className="grid grid-cols-4 gap-4 mt-4">
   {/* Participate Card */}
   <div className="bg-white shadow-md rounded-none overflow-hidden">
@@ -186,7 +187,7 @@ const Pickwinner = () => {
                     <tr key={index} className="border-t border-gray-300">
                       <td className="px-4 py-2">{index + 1}</td>
                       <td className="px-4 py-2">{player}</td>
-                      <td className="px-4 py-2">-</td> {/* Replace with nickname logic */}
+                      <td className="px-4 py-2"> {playerr[index]}</td> {/* Replace with nickname logic */}
                     </tr>
                   ))
                 ) : (

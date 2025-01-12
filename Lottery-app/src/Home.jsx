@@ -5,14 +5,13 @@ const Home = () => {
   const [currentAccount, setCurrentAccount] = useState(null);
   const navigate = useNavigate();
 
-  // Function to connect wallet
   const connectWallet = async () => {
     if (typeof window.ethereum !== "undefined") {
       try {
         const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
         setCurrentAccount(accounts[0]);
         console.log("Connected account:", accounts[0]);
-        navigate("/pick-winner"); // Navigate to the Pickwinner page
+        navigate("/pick-winner");
       } catch (err) {
         console.error("Error connecting to MetaMask:", err);
         alert("Failed to connect wallet. Please try again.");
@@ -22,41 +21,63 @@ const Home = () => {
     }
   };
 
-  // Function to disconnect wallet
   const disconnectWallet = () => {
-    setCurrentAccount(null); // Clear the connected account
-    navigate("/"); // Return to the home page
+    setCurrentAccount(null);
+    navigate("/");
     console.log("Wallet disconnected");
   };
 
-  // Automatically update account when MetaMask account changes
   useEffect(() => {
     if (typeof window.ethereum !== "undefined") {
       window.ethereum.on("accountsChanged", (accounts) => {
         if (accounts.length === 0) {
-          setCurrentAccount(null); // No accounts connected
+          setCurrentAccount(null);
         } else {
-          setCurrentAccount(accounts[0]); // Update to new account
+          setCurrentAccount(accounts[0]);
         }
       });
     }
   }, []);
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>Welcome to the Lottery DApp</h1>
-      {!currentAccount ? (
-        <button onClick={connectWallet} style={{ padding: "10px 20px", fontSize: "16px" }}>
-          Connect Wallet
-        </button>
-      ) : (
-        <div>
-          <p>Connected Account: {currentAccount}</p>
-          <button onClick={disconnectWallet} style={{ padding: "10px 20px", fontSize: "16px", marginTop: "10px" }}>
-            Disconnect Wallet
-          </button>
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center py-10">
+      <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-2xl">
+        <div className="text-center">
+          <div className="mb-8">
+            <div className="relative overflow-hidden rounded-md">
+              <img
+                src="/Lottery.png"
+                alt="Lottery"
+                className="w-fit h-[200px] object-cover"
+              />
+            </div>
+          </div>
+          <h1 className="text-3xl font-bold text-gray-800 mb-4">Welcome to the Lottery DApp</h1>
+          <p className="text-gray-600 mb-6">
+            Connect your wallet to participate in the lottery and stand a chance to win exciting prizes.
+          </p>
+          {!currentAccount ? (
+            <button
+              onClick={connectWallet}
+              className="px-8 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-lg font-medium shadow-md transition-transform transform hover:scale-105"
+            >
+              Connect Wallet
+            </button>
+          ) : (
+            <div>
+              <p className="text-lg text-gray-800 mb-4">
+                Connected Account: <span className="font-semibold">{currentAccount}</span>
+              </p>
+              <button
+                onClick={disconnectWallet}
+                className="px-8 py-3 bg-red-500 hover:bg-red-400 text-white rounded-lg text-lg font-medium shadow-md transition-transform transform hover:scale-105"
+              >
+                Disconnect Wallet
+              </button>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };

@@ -13,7 +13,7 @@ const Pickwinner = () => {
   const [isWinnerPicked, setIsWinnerPicked] = useState(false);
   const [winner, setWinner] = useState(null);
   const [manager, setManager] = useState(null); // Add state to hold manager address
-  const contractAddress = "0x7106b63A5A7F1D3146C894B87BB1BF15a474cbeA";
+  const contractAddress = "0x5Aa3D98D3e511d086170aC3E35590B5524058098";
 
   useEffect(() => {
     const loadBlockchainData = async () => {

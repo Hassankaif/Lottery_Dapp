@@ -29,6 +29,12 @@ const Home = () => {
 
   useEffect(() => {
     if (typeof window.ethereum !== "undefined") {
+      window.ethereum.request({ method: "eth_accounts" }).then((accounts) => {
+        if (accounts.length > 0) {
+          setCurrentAccount(accounts[0]);
+        }
+      });
+
       window.ethereum.on("accountsChanged", (accounts) => {
         if (accounts.length === 0) {
           setCurrentAccount(null);
@@ -40,37 +46,37 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center py-10">
-      <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-2xl">
-        <div className="text-center">
-          <div className="mb-8">
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center py-12">
+      <div className="bg-white shadow-lg rounded-lg p-10 w-full max-w-3xl">
+        <div className="text-center mb-8">
+          <div className="mb-10">
             <div className="relative overflow-hidden rounded-md">
               <img
                 src="/Lottery.png"
                 alt="Lottery"
-                className="w-fit h-[200px] object-cover"
+                className="w-[800px] h-[200px] object-cover mx-auto"
               />
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-gray-800 mb-4">Welcome to the Lottery DApp</h1>
-          <p className="text-gray-600 mb-6">
+          <h1 className="text-4xl font-bold text-gray-800 mb-6">Welcome to the Lottery DApp</h1>
+          <p className="text-lg text-gray-600 mb-8">
             Connect your wallet to participate in the lottery and stand a chance to win exciting prizes.
           </p>
           {!currentAccount ? (
             <button
               onClick={connectWallet}
-              className="px-8 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-lg font-medium shadow-md transition-transform transform hover:scale-105"
+              className="px-10 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xl font-medium shadow-md transition-transform transform hover:scale-110"
             >
               Connect Wallet
             </button>
           ) : (
             <div>
-              <p className="text-lg text-gray-800 mb-4">
+              <p className="text-xl text-gray-800 mb-20">
                 Connected Account: <span className="font-semibold">{currentAccount}</span>
               </p>
               <button
                 onClick={disconnectWallet}
-                className="px-8 py-3 bg-red-500 hover:bg-red-400 text-white rounded-lg text-lg font-medium shadow-md transition-transform transform hover:scale-105"
+                className="px-16 py-4 mt-4  bg-red-500 hover:bg-red-400 text-white rounded-lg text-xl font-medium shadow-md transition-transform transform hover:scale-110"
               >
                 Disconnect Wallet
               </button>

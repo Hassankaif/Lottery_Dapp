@@ -85,14 +85,14 @@ The manager picks the winner and transfers the prize using the provided function
 ## 🎨 Screenshots
 
 ### Home Page
-![Lottery DApp Home](./public/home.png)
-![Lottery DApp Home 2](./public/home2.png)
+![Lottery DApp Home](https://github.com/Hassankaif/Lottery_Dapp/blob/main/Lottery-app/public/home.png)
+![Lottery DApp Home 2](https://github.com/Hassankaif/Lottery_Dapp/blob/main/Lottery-app/public/home2.png)
 
 ### Pick Winner Page (For Manager)
-![Lottery DApp Front](./public/front.png)
+![Lottery DApp Front](https://github.com/Hassankaif/Lottery_Dapp/blob/main/Lottery-app/public/front.png)
 
 ### Pick Winner Page (For Participants)
-![Lottery DApp Front 2](./public/front2.png)
+![Lottery DApp Front 2](https://github.com/Hassankaif/Lottery_Dapp/blob/main/Lottery-app/public/front2.png)
 
 ### 🤝 Contributing
 

@@ -28,6 +28,10 @@ contract Lottery{
     return uint(keccak256(abi.encodePacked(block.timestamp, block.difficulty, Players.length)));
 }
 
+    function getPlayers() public view returns(address payable[] memory){
+        return Players;
+    }
+
     function pickWinner() public {
         require(Manager==msg.sender,"access denied");
         require(Players.length>=3,"not enough players to play,plz wait...");
